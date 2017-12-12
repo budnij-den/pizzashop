@@ -1,0 +1,42 @@
+<h2>WELCOME TO PIZZASHOP</h2>
+
+<div class="row">
+
+  <% @products.each do |product| %>
+  <div class="col-md-3" style="margin-left: 1em; border: 1em solid grey; border-radius: 1em;<%= product.is_best_offer ? "background-color: gold" : nil %>;">
+      <h4>
+        <%= product.title %>
+      </h4>
+      <img src="<%= product.path_to_image%>" style="height: 150px">
+      <p style="text-align: right;"><em>
+        <b>
+          <%= product.description %>
+        </b>
+      </em></p>
+      <p>cost: <%= product.price %> ₽</p>
+      <p>size:<%= product.size %>cm</p>
+      <p><%= product.is_spicy ? "spicy!" : "not spicy!" %></p>
+      <p style="<%= product.is_veg ? nil : "padding: .7em;" %>"><%= product.is_veg ? "veg!" : nil %></p>
+      <div style="text-align: right;">
+        <button class="badge btn-success" style="margin-bottom: 1em;" onclick="addToCart(<%= product.id%>, '<%= product.title %>');">add to cart</button>
+      </div>
+  </div>
+  <% end %>
+ <div style="text-align: right;">
+        <button class="badge btn-danger" style="" onclick="clearCart();">clear cart</button>
+      </div>
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-md-3"> <img src="1"> </div>
+    <div class="col-md-3"> <img src="2"> </div>
+    <div class="col-md-3"> <img src="3"> </div>
+    <div class="col-md-3"> <img src="4"> </div>
+    <div class="col-md-3"> <img src="5"> </div>
+    ...
+    <div class="col-md-3"> <img src="50"> </div>
+</div> -->
+
+<!--     <button class="btn btn-primary btn-lg" onclick="simpleCounter()">simple counter</button><br><hr>
+    <button class="btn btn-primary btn-lg" onclick="resetCounter()">reset counter</button> -->

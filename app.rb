@@ -18,7 +18,8 @@ end
 
 
 get '/' do
-  erb "Hello!"
+  @products=Product.all
+  erb :index
 end
 
 get "/link1" do
