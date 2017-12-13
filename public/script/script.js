@@ -16,30 +16,41 @@ function addToCart(productId, productTitle){
   var amount = window.localStorage.getItem(key);
   amount = amount*1 + 1;
   window.localStorage.setItem(key, amount);
-  alert(amount + " " + productTitle + ' pizza is added to cart');
+//  alert(amount + " " + productTitle + ' pizza is added to cart');
+  updateOrderInput();
 };
 
-function getNumberOfItemsAtCart(){
+function showCart(){
   var total = 0;
   for (var i = 0; i < window.localStorage.length; i++) {
     var ident = window.localStorage.key(i);
     var singleAmount = window.localStorage.getItem(ident);
     total = total + singleAmount*1;
   };
-  alert('there is (are) '+total+' item(s) in cart');
+//  alert('there is (are) '+total+' item(s) in cart');
+  updateOrderInput();
+};
+
+function getOrder(){
+  var order = '';
+    for (var i = 0; i < window.localStorage.length; i++) {
+    var ident = window.localStorage.key(i);
+    var singleAmount = window.localStorage.getItem(ident);
+    order = order + ident + "=" + singleAmount*1 + ",";
+  };
+  //alert(order, ident);
+  return order;
 };
 
 function clearCart(){
   window.localStorage.clear();
-  alert('order reset, now is '+window.localStorage.length+' items in cart');
+  //alert('order reset, now is '+window.localStorage.length+' items in cart');
+  updateOrderInput();
 };
 
-// print "enter product id:"
-// id = gets.chomp
-// print "enter amount"
-// n = gets.chomp.to_i
+function updateOrderInput(){
+  var orders = getOrder();
+  $('#postField').val(orders);
+};
 
-// order={}
-// id ? order[id]=order[id]+n : order[id]=n
-
-// p order
+window.onLoad = updateOrderInput();

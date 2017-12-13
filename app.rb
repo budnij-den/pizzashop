@@ -25,3 +25,7 @@ end
 get "/link1" do
   erb "second page"
 end
+
+post "/cart" do
+  erb "cart"
+end

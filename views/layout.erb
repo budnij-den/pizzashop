@@ -35,7 +35,12 @@
              <li><a href="/contacts">Contacts</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="btn btn-success btn-lg">cart</a></li>
+            <li>
+              <form action="/cart" method="POST">
+                <input type="text" id="postField" name="orders" style="">
+                <input type="submit" value="Cart" class="btn btn-success btn-lg">
+              </form>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
 
@@ -51,6 +56,17 @@
     <button class="btn btn-primary btn-lg" onclick="resetCounter()">reset counter</button> -->
   </div>
 
+<p onclick="getOrder();">
+  ============================
+</p>
+
+ <div style="text-align: right; margin-right: 1em; margin-top: 7em;">
+  <button class="badge btn-danger" style="transform: scale(2); height: 5em;" onclick="clearCart();">clear cart</button>
+</div>
+
+ <div style="text-align: right; margin-right: 1em; margin-top: 7em;">
+  <button class="badge btn-info" style="transform: scale(2); height: 5em;" onclick="showCart();">show cart</button>
+</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/vendor/jquery-1.9.1.min.js"></script>
