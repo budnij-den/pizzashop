@@ -18,15 +18,14 @@
       <p><%= product.is_spicy ? "spicy!" : "not spicy!" %></p>
       <p style="<%= product.is_veg ? nil : "padding: .7em;" %>"><%= product.is_veg ? "veg!" : nil %></p>
       <div style="text-align: right;">
-        <button class="badge btn-success" style="margin-bottom: 1em;" onclick="addToCart(<%= product.id%>, '<%= product.title %>');">add to cart</button>
+        <button class="badge btn-success" style="margin-bottom: 1em; width: 100%;" onclick="addToCart(<%= product.id%>, '<%= product.title %>');">add to cart</button>
       </div>
   </div>
   <% end %>
- <div style="text-align: right;">
-        <button class="badge btn-danger" style="" onclick="clearCart();">clear cart</button>
+ <div style="text-align: right; margin-right: 1em; margin-top: 7em;">
+        <button class="badge btn-danger" style="transform: scale(2); height: 10em;" onclick="clearCart();">clear cart</button>
       </div>
 </div>
-
 
 <!-- <div class="row">
     <div class="col-md-3"> <img src="1"> </div>

@@ -13,7 +13,7 @@
 
 function addToCart(productId, productTitle){
   var key = 'product_' + productId;
-  var x = window.localStorage.getItem(key);
+  var amount = window.localStorage.getItem(key);
   amount = amount*1 + 1;
   window.localStorage.setItem(key, amount);
   alert(amount + " " + productTitle + ' pizza is added to cart');
