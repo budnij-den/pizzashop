@@ -19,9 +19,19 @@ function addToCart(productId, productTitle){
   alert(amount + " " + productTitle + ' pizza is added to cart');
 };
 
+function getNumberOfItemsAtCart(){
+  var total = 0;
+  for (var i = 0; i < window.localStorage.length; i++) {
+    var ident = window.localStorage.key(i);
+    var singleAmount = window.localStorage.getItem(ident);
+    total = total + singleAmount*1;
+  };
+  alert('there is (are) '+total+' item(s) in cart');
+};
+
 function clearCart(){
   window.localStorage.clear();
-  alert(window.localStorage.length);
+  alert('order reset, now is '+window.localStorage.length+' items in cart');
 };
 
 // print "enter product id:"

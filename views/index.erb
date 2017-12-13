@@ -3,7 +3,7 @@
 <div class="row">
 
   <% @products.each do |product| %>
-  <div class="col-md-3" style="margin-left: 1em; border: 1em solid grey; border-radius: 1em;<%= product.is_best_offer ? "background-color: gold" : nil %>;">
+  <div class="col-md-3" style="margin: 0 0 1em 1em; border: 1em solid grey; border-radius: 1em;<%= product.is_best_offer ? "background-color: gold" : nil %>;">
       <h4>
         <%= product.title %>
       </h4>
@@ -23,19 +23,14 @@
   </div>
   <% end %>
  <div style="text-align: right; margin-right: 1em; margin-top: 7em;">
-        <button class="badge btn-danger" style="transform: scale(2); height: 10em;" onclick="clearCart();">clear cart</button>
+        <button class="badge btn-danger" style="transform: scale(2); height: 5em;" onclick="clearCart();">clear cart</button>
       </div>
+       <div style="text-align: right; margin-right: 1em; margin-top: 7em;">
+        <button class="badge btn-info" style="transform: scale(2); height: 5em;" onclick="getNumberOfItemsAtCart();">show cart</button>
+      </div>
+
 </div>
 
-<!-- <div class="row">
-    <div class="col-md-3"> <img src="1"> </div>
-    <div class="col-md-3"> <img src="2"> </div>
-    <div class="col-md-3"> <img src="3"> </div>
-    <div class="col-md-3"> <img src="4"> </div>
-    <div class="col-md-3"> <img src="5"> </div>
-    ...
-    <div class="col-md-3"> <img src="50"> </div>
-</div> -->
 
 <!--     <button class="btn btn-primary btn-lg" onclick="simpleCounter()">simple counter</button><br><hr>
     <button class="btn btn-primary btn-lg" onclick="resetCounter()">reset counter</button> -->
