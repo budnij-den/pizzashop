@@ -18,6 +18,7 @@ function addToCart(productId, productTitle){
   window.localStorage.setItem(key, amount);
 //  alert(amount + " " + productTitle + ' pizza is added to cart');
   updateOrderInput();
+  updateCartButton();
 };
 
 function showCart(){
@@ -28,7 +29,7 @@ function showCart(){
     total = total + singleAmount*1;
   };
 //  alert('there is (are) '+total+' item(s) in cart');
-  updateOrderInput();
+  return total;
 };
 
 function getOrder(){
@@ -38,14 +39,13 @@ function getOrder(){
     var singleAmount = window.localStorage.getItem(ident);
     order = order + ident + "=" + singleAmount*1 + ",";
   };
-  //alert(order, ident);
   return order;
 };
 
 function clearCart(){
   window.localStorage.clear();
-  //alert('order reset, now is '+window.localStorage.length+' items in cart');
   updateOrderInput();
+  updateCartButton();
 };
 
 function updateOrderInput(){
@@ -53,4 +53,10 @@ function updateOrderInput(){
   $('#postField').val(orders);
 };
 
+function updateCartButton(){
+  var text = "Cart (" + showCart() + ")";
+  $('#cartButton').val(text);
+};
+
 window.onLoad = updateOrderInput();
+window.onLoad = updateCartButton();
