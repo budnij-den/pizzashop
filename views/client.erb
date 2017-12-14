@@ -1,0 +1,12 @@
+<h2>your order is:</h2>
+<ul>
+  <% @order_in_cart.each do |line|%>
+  <li>
+    <% x = Product.find (line[0]) %>
+    <%= x.title %> | <%= x.price%> x <%= line[1]%> = <%= x.price * line[1].to_i%>
+    <% @total_cash += x.price * line[1].to_i%>
+  </li>
+  <% end %>
+</ul>
+
+<p>summary: <%= @total_cash%></p>

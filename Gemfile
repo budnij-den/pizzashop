@@ -5,6 +5,7 @@ gem "sinatra-activerecord"
 gem "sinatra-reloader"
 gem "shotgun"
 gem "sinatra-contrib"
+gem "json"
 
 group :development do
   gem "sqlite3"

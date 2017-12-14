@@ -3,6 +3,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
+require 'json'
 
 configure :development do
   set :database, "sqlite3:pizzashop.db"
@@ -13,7 +14,10 @@ configure :production do
 end
 
 class Product < ActiveRecord::Base
+end
 
+class Client
+  attr_accessor :name, :phone, :adress
 end
 
 def parse_order order_lines
@@ -30,17 +34,28 @@ def parse_order order_lines
   return arr
 end
 
+before do 
+    @products=Product.all
+end
+
 get '/' do
-  @products=Product.all
   erb :index
 end
 
 get "/link1" do
-  erb "second page"
+  erb "link 1 page"
 end
 
 post "/cart" do
   @order_in_cart = parse_order params[:orders];
+  @total_cash = 0
+  @c=Client.new
+  @c.name = :jim; @c.phone = 8456123; @c.adress = 'red square, 1'
+  erb :cart
+end
 
-  erb "#{@order_in_cart}"
+post "/client" do
+№  order=JSON.parse params[:order]
+
+  erb "client page<br> #{JSON.parse params[:order]}<br> #{params}"
 end

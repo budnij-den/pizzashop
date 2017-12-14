@@ -1,0 +1,31 @@
+<h3>your order is:</h3>
+<ul>
+  <% @order_in_cart.each do |line|%>
+  <li>
+    <% x = Product.find (line[0]) %>
+    <%= x.title %> | <%= x.price%> x <%= line[1]%> = <%= x.price * line[1].to_i%>
+    <% @total_cash += x.price * line[1].to_i%>
+  </li>
+  <% end %>
+</ul>
+  <p>summary: <%= @total_cash%></p>
+
+<form action="/client" method="post">
+  <div class="form-group">
+    <label>name</label>
+    <input type="text" name="client[name]" class="form-control" value="<%= @c.name%>">
+  </div>
+  <div>
+    <label>phone</label>
+    <input type="text" name="client[phone]" class="form-control" value="<%= @c.phone%>">
+  </div>
+  <div>
+    <label>adress</label>
+    <input type="text" name="client[adress]" class="form-control" value="<%= @c.adress%>">
+    <% hh = {}%>
+    <% @order_in_cart.each {|item| hh[item[0]]=item[1]}%>
+    <% order_json = hh.to_json %>
+    <input type="text" name="client[order]" class="form-control" value="<%= order_json.delete! "\"" %>">
+    <button type="submit" class="btn btn-success btn-lg" style="margin-top: 2em;">place order</button>
+  </div>
+</form>
