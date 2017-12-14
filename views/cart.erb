@@ -1,10 +1,13 @@
 <h3>your order is:</h3>
 <ul>
-  <% @order_in_cart.each do |line|%>
+  <% @order_for_input = String.new %>
+  <% @order_in_cart.each do |line| %>
   <li>
     <% x = Product.find (line[0]) %>
     <%= x.title %> | <%= x.price%> x <%= line[1]%> = <%= x.price * line[1].to_i%>
     <% @total_cash += x.price * line[1].to_i%>
+    <% added_string = line[0].to_s + "=" + line[1].to_s + "," %>
+    <% @order_for_input << added_string %>
   </li>
   <% end %>
 </ul>
@@ -22,10 +25,10 @@
   <div>
     <label>adress</label>
     <input type="text" name="client[adress]" class="form-control" value="<%= @c.adress%>">
-    <% hh = {}%>
-    <% @order_in_cart.each {|item| hh[item[0]]=item[1]}%>
-    <% order_json = hh.to_json %>
-    <input type="text" name="client[order]" class="form-control" value="<%= order_json.delete! "\"" %>">
+
+    <% #@order_for_input = @order_for_input.each_key{ |key| key.to_i}%>
+    <%= @order_for_input%>
+    <input type="text" name="client[order]" class="form-control" value="<%= @order_for_input %>">
     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 2em;">place order</button>
   </div>
 </form>

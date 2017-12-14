@@ -34,7 +34,7 @@ def parse_order order_lines
   return arr
 end
 
-before do 
+before do
     @products=Product.all
 end
 
@@ -55,7 +55,15 @@ post "/cart" do
 end
 
 post "/client" do
-№  order=JSON.parse params[:order]
+  arr_lines = params[:client][:order].split(/\,/);
+  order = []
+   arr_lines.each do |x|
+    arr2 = x.split(/\=/);
+     id = arr2[0].to_i
+     count = arr2[1].to_i
+     order << [id,count]
+   end
 
-  erb "client page<br> #{JSON.parse params[:order]}<br> #{params}"
+
+  erb "client page<br> #{order}<br> #{params}"
 end
