@@ -26,9 +26,7 @@
     <label>adress</label>
     <input type="text" name="client[adress]" class="form-control" value="<%= @c.adress%>">
 
-    <% #@order_for_input = @order_for_input.each_key{ |key| key.to_i}%>
-    <%= @order_for_input%>
-    <input type="text" name="client[order]" class="form-control" value="<%= @order_for_input %>">
+    <input type="hidden" name="client[placed_order]" class="form-control" value="<%= @order_for_input %>">
     <button type="submit" class="btn btn-success btn-lg" style="margin-top: 2em;">place order</button>
   </div>
 </form>

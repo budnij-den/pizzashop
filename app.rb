@@ -16,8 +16,8 @@ end
 class Product < ActiveRecord::Base
 end
 
-class Client
-  attr_accessor :name, :phone, :adress
+class Client < ActiveRecord::Base
+  #attr_accessor :name, :phone, :adress
 end
 
 def parse_order order_lines
@@ -36,6 +36,7 @@ end
 
 before do
     @products=Product.all
+    @clients = Client.all
 end
 
 get '/' do
@@ -49,21 +50,30 @@ end
 post "/cart" do
   @order_in_cart = parse_order params[:orders];
   @total_cash = 0
-  @c=Client.new
-  @c.name = :jim; @c.phone = 8456123; @c.adress = 'red square, 1'
+  #для заполнения полей формы при первом прогоне
+    unless @c 
+      @c=Client.new
+    @c.name = "enter name"; @c.phone = "enter phone"; @c.adress = "enter adress"
+  end
   erb :cart
 end
 
 post "/client" do
-  arr_lines = params[:client][:order].split(/\,/);
-  order = []
+  arr_lines = params[:client][:placed_order].split(/\,/);
+  @order = []
    arr_lines.each do |x|
     arr2 = x.split(/\=/);
      id = arr2[0].to_i
      count = arr2[1].to_i
-     order << [id,count]
+     @order << [id,count]
    end
 
+  @c = Client.new params[:client]
+  
+  erb :client
+end
 
-  erb "client page<br> #{order}<br> #{params}"
+get "/client" do
+#  erb "successfully saved <li>#{@clients.each{|a|a.class}} "
+  erb :order_placed
 end

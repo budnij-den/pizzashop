@@ -1,6 +1,8 @@
+
 <h2>your order is:</h2>
+<% @total_cash = 0 %>
 <ul>
-  <% @order_in_cart.each do |line|%>
+  <% @order.each do |line|%>
   <li>
     <% x = Product.find (line[0]) %>
     <%= x.title %> | <%= x.price%> x <%= line[1]%> = <%= x.price * line[1].to_i%>
@@ -10,3 +12,18 @@
 </ul>
 
 <p>summary: <%= @total_cash%></p>
+
+<h2>your delivery data:</h2>
+<ul>
+  <li>Name: <%= @c.name %></li>
+  <li>Phone: <%= @c.phone %></li>
+  <li>Adress: <%= @c.adress %></li>
+</ul>
+<% @c.save%>
+<form action="/client" method="get">
+  <input id="clientSaverTag" type="hidden" />
+  <button type="submit" class="btn btn-success btn-lg" onmouseover="clientSaveToDb()">confirm</button>
+</form>
+<!-- <script src="/vendor/jquery-1.9.1.min.js"></script>
+<script src="/script/script.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script> -->

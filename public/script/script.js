@@ -58,5 +58,12 @@ function updateCartButton(){
   $('#cartButton').val(text);
 };
 
+function clientSaveToDb(){
+  var saver = "<% @c.save %>";
+  $('#clientSaverTag').val(saver);
+  clearCart();
+//  alert(saver + " saved!");
+};
+
 window.onLoad = updateOrderInput();
 window.onLoad = updateCartButton();
