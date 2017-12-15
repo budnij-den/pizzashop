@@ -46,6 +46,7 @@ function clearCart(){
   window.localStorage.clear();
   updateOrderInput();
   updateCartButton();
+  emptyCartAlert();
 };
 
 function updateOrderInput(){
@@ -65,5 +66,17 @@ function clientSaveToDb(){
 //  alert(saver + " saved!");
 };
 
+function emptyCartAlert(){
+  if (window.localStorage.length == 0){
+    $('#empty_cart_alert').show();
+    $('li#orderList').hide();
+    $('#place_order_button').prop('disabled',true);
+  } else {
+    $('#empty_cart_alert').hide();
+
+  };
+};
+
+window.onLoad = emptyCartAlert();
 window.onLoad = updateOrderInput();
 window.onLoad = updateCartButton();

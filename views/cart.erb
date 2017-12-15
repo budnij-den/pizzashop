@@ -2,7 +2,7 @@
   <ul>
     <% @order_for_input = String.new %>
     <% @order_in_cart.each do |line| %>
-    <li>
+    <li id="orderList">
       <% x = Product.find (line[0]) %>
       <%= x.title %> | <%= x.price%> x <%= line[1]%> = <%= x.price * line[1].to_i%>
       <% @total_cash += x.price * line[1].to_i%>
@@ -12,6 +12,8 @@
     <% end %>
   </ul>
 <p>summary: <%= @total_cash%></p>
+
+<p style="background-color: red;transform: scale(1);" id="empty_cart_alert" hidden>cart is empty</p>
 
   <form action="/client" method="post" id="id_for_button">
     <div class="form-group">
@@ -30,7 +32,7 @@
     </div>
   </form>
 
-  <button type="submit" class="btn btn-success btn-lg" style="margin-top: 2em;" form="id_for_button">place order</button>
+  <button type="submit" class="btn btn-success btn-lg" style="margin-top: 2em;" form="id_for_button" id="place_order_button">place order</button>
   <button class="btn btn-danger btn-lg" style="margin: 2em 0 0 1em;" onclick="clearCart();">clear cart</button>
 
 
